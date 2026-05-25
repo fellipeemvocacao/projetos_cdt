@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
@@ -6,7 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__)
 CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///igreja_catolica.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/igreja_catolica.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -22,6 +23,8 @@ class Conteudo(db.Model):
     titulo = db.Column(db.String(150), nullable=False)
     texto = db.Column(db.Text, nullable=False)
 
+with app.app_context():
+    db.create_all()
 
 @app.route('/')
 def index():
