@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function mostrarMensagem(texto, erro = false) {
         feedback.innerText = texto;
-        feedback.className = `text-xs text-center font-medium mt-1 ${erro ? 'text-red-600' : 'text-green-600'}`;
+        feedback.className = `text-xs text-center font-medium mt-1 ${erro ? 'text-red-400' : 'text-green-400'}`;
         feedback.classList.remove("hidden");
     }
 
@@ -102,7 +102,7 @@ function carregarSubMenu(categoriaId) {
     subMenus[categoriaId].forEach((nomeSub, index) => {
         const btn = document.createElement("button");
         btn.innerText = nomeSub;
-        btn.className = "bg-gray-200 hover:bg-amber-700 hover:text-white px-3 py-1.5 text-xs font-medium rounded transition cursor-pointer shadow-sm text-gray-800";
+        btn.className = "bg-slate-700 hover:bg-amber-700 text-slate-100 px-3 py-1.5 text-xs font-medium rounded transition cursor-pointer shadow-sm border border-slate-600 hover:text-white";
         
         btn.onclick = () => buscarDadosDoServidor(categoriaId, index + 1);
         container.appendChild(btn);
@@ -113,7 +113,7 @@ function carregarSubMenu(categoriaId) {
 
 async function buscarDadosDoServidor(categoriaId, opcaoId) {
     try {
-        const url = `http://127.0.0.1:5000/api/conteudo/${categoriaId}/${opcaoId}`;
+        const url = `/api/conteudo/${categoriaId}/${opcaoId}`;
         console.log("Tentando acessar a rota:", url);
 
         const resposta = await fetch(url);
@@ -132,7 +132,7 @@ async function buscarDadosDoServidor(categoriaId, opcaoId) {
             elementoConteudo.innerText = `Erro: ${dados.erro} (Categoria: ${categoriaId}, Opção: ${opcaoId})`;
         } else {
             elementoTitulo.innerText = dados.titulo;
-            elementoConteudo.textContent = dados.texto; 
+            elementoConteudo.innerHTML = dados.texto;
         }
 
     } catch (erro) {
@@ -140,7 +140,7 @@ async function buscarDadosDoServidor(categoriaId, opcaoId) {
         
         document.getElementById("texto-titulo").innerText = "Erro de Conexão/Rota";
         document.getElementById("texto-conteudo").innerText = 
-            `Não foi possível carregar os dados.\nDetalhes do erro: ${erro.message}\n\nVerifique se o seu terminal do Flask mostrou algum erro em vermelho.`;
+            `Não foi possível carregar os dados.\nDetalhes do erro: ${erro.message}\n\nSe estiver testando localmente, garanta que o Flask está rodando. Se for na Vercel, verifique os Logs de Implantação.`;
     }
 }
 
@@ -152,13 +152,13 @@ function mostrarConsideracoes() {
     
     elementoTitulo.innerText = "--- CONSIDERAÇÕES FINAIS ---";
     elementoConteudo.innerHTML = `
-        <p class='mb-2 text-justify'>Este sistema de aprendizado foi projetado para fornecer uma visão clara, fiel e ortodoxa da Doutrina Católica.</p>
-        <p class='font-semibold mt-4 text-amber-800'>As fontes teológicas utilizadas foram:</p>
-        <ul class='list-disc pl-5 mt-2 space-y-1 text-sm text-gray-600 text-justify'>
+        <p class='mb-2 text-justify w-full'>Este sistema de aprendizado foi projetado para fornecer uma visão clara, fiel e ortodoxa da Doutrina Católica.</p>
+        <p class='font-semibold mt-4 text-amber-500'>As fontes teológicas utilizadas foram:</p>
+        <ul class='list-disc pl-5 mt-2 space-y-1 text-sm text-slate-300 text-justify'>
             <li>O Catecismo Romano (Promulgado por ordem do Concílio de Trento e do Papa São Pio V, 1566).</li>
             <li>Atas e Decretos Dogmáticos do Sacrossanto Concílio de Trento.</li>
             <li>Encíclicas Papais de relevância dogmática (como <i>Ineffabilis Deus</i> de Pio IX e <i>Mystici Corporis Christi</i> de Pio XII).</li>
         </ul>
-        <p class='mt-4 font-light text-xs italic text-gray-500'>Obrigado por utilizar este roteiro de estudos teológicos!</p>
+        <p class='mt-4 font-light text-xs italic text-slate-500'>Obrigado por utilizar este roteiro de estudos teológicos!</p>
     `;
 }
