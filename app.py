@@ -7,9 +7,14 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__)
 CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/igreja_catolica.db'
+if os.environ.get('RENDER'):
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/igreja_catolica.db'
+else:
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///igreja_catolica.db'
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+
 
 
 class Usuario(db.Model):
@@ -23,9 +28,6 @@ class Conteudo(db.Model):
     opcao_id = db.Column(db.Integer, nullable=False)     
     titulo = db.Column(db.String(150), nullable=False)
     texto = db.Column(db.Text, nullable=False)
-
-with app.app_context():
-    db.create_all()
 
 
 
@@ -84,6 +86,7 @@ def obter_conteudo(cat_id, op_id):
         })
     
     return jsonify({"erro": "Conteúdo não encontrado no banco de dados."}), 404
+
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -2,8 +2,7 @@ from app import app, db, Conteudo
 
 def povoar_banco():
     with app.app_context():
-        db.create_all()
-        
+        db.create_all()        
         if Conteudo.query.first():
             print("Banco de dados já está povoado.")
             return
@@ -67,7 +66,7 @@ def povoar_banco():
                      texto="Sacramento instituído para aliviar espiritual e corporalmente os fiéis gravemente enfermos ou em perigo de morte. Alivia a alma, perdoa os pecados veniais (e até mortais não confessados por impossibilidade, desde que haja contrição), e concede forças contra as tentações da agonia."),
             
             Conteudo(categoria_id=2, opcao_id=7, titulo="Ordem", 
-                     texto="Sacramento pelo qual homens são constituídos ministros sagrados na Igreja, recebendo o poder espiritual e a graça para exercer las funções divinas (oferecer o Sacrifício da Missa, perdoar pecados e governar o povo de Deus). Divide-se em Episcopado, Presbiterado e Diaconato."),
+                     texto="Sacramento pelo qual homens são constituídos ministros sagrados na Igreja, recebendo o poder espiritual e a graça para exercer as funções divinas (oferecer o Sacrifício da Missa, perdoar pecados e governar o povo de Deus). Divide-se em Episcopado, Presbiterado e Diaconato."),
             
             Conteudo(categoria_id=2, opcao_id=8, titulo="Matrimônio", 
                      texto="A união indissolúvel e legítima entre um homem e uma mulher cristãos, elevada por Cristo à dignidade de Sacramento. Concede aos esposos a graça de se amarem santamente, de guardarem fidelidade mútua e de educarem os filhos na fé e no temor de Deus."),
