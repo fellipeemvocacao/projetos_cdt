@@ -1,6 +1,3 @@
-
----
-
 # Catecismo Digital - API Católica
 
 Este é um projeto de API e aplicação web desenvolvido em **Flask (Python)** com o objetivo de disponibilizar conteúdos doutrinários da Igreja Católica de forma categorizada, incluindo suporte a autenticação de usuários (cadastro e login). Os dados incluem explicações detalhadas baseadas no Catecismo Romano, Concílio de Trento e outras fontes magisteriais sobre o Credo, os Sacramentos, os Mandamentos, a Oração, Dogmas e a própria Igreja.
