@@ -1,4 +1,3 @@
-Aqui está uma proposta completa e estruturada para o arquivo `README.md` do seu projeto, utilizando como base a estrutura de arquivos visível na imagem `image_74a3aa.png` e a implementação contida nos códigos fornecidos.
 
 ---
 
